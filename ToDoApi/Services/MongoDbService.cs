@@ -31,7 +31,7 @@ namespace ToDoApi.Services
             return await _collection.Find(_ => true).ToListAsync();
         }
 
-        // Replace an existing item by ID with a new one
+        // Replace an existing item by id with a new one
         public async Task<bool> UpdateAsync(string id, ToDoItem updatedItem)
         {
             var result = await _collection.ReplaceOneAsync(x => x.Id == id, updatedItem);
