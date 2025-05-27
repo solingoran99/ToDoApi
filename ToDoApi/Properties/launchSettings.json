@@ -1,0 +1,13 @@
+{
+  "profiles": {
+    "ToDoApi": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7153",
+      "launchBrowser": false,
+      "environmentVariables": {
+        "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+        "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated"
+      }
+    }
+  }
+}
