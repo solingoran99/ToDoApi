@@ -11,11 +11,18 @@ namespace ToDoApi.Services
 
         public MongoDbService()
         {
-            // Connect to MongoDB and get the "todos" collection from the "ToDoDb" database
-            var client = new MongoClient("mongodb+srv://solingorann:Nayasolin0225@cluster0.5z3ci.mongodb.net/ToDoDb?retryWrites=true&w=majority&appName=Cluster0");
+            var connectionString = Environment.GetEnvironmentVariable("MongoDbConnectionString");
+
+            if (string.IsNullOrEmpty(connectionString))
+            {
+                throw new InvalidOperationException("MongoDbConnectionString is not set in the environment variables.");
+            }
+
+            var client = new MongoClient(connectionString);
             var database = client.GetDatabase("ToDoDb");
             _collection = database.GetCollection<ToDoItem>("todos");
         }
+
 
         // Insert a new ToDo item into the collection
         public async Task CreateAsync(ToDoItem item) =>
